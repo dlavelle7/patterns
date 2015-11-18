@@ -18,7 +18,7 @@ class Node(object):
         child.parent = self
         self.children.add(child)
 
-def create_balanced_tree(levels=4, node=None):
+def create_balanced_tree(levels=3, node=None):
     root = None
     if not node:
         node = Node()
@@ -30,11 +30,21 @@ def create_balanced_tree(levels=4, node=None):
     return root
 
 def depth_first_search(find_node):
-    import ipdb; ipdb.set_trace()
     root = create_balanced_tree()
 
+    def recursive_search(node):
+        if node.id == find_node:
+            return node
+        for child in node.children:
+            result = recursive_search(child)
+            if result:
+                return result
+
+    return recursive_search(root)
+
 def breadth_first_search(find_node):
-    import ipdb; ipdb.set_trace()
     root = create_balanced_tree()
 
 # TODO: pygraphviz
+# TODO: timing (timeit) comparison
+# TODO: memory usage comparison?
