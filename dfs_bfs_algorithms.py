@@ -29,10 +29,12 @@ def create_balanced_graph(levels=4, node=None):
             create_balanced_graph(levels - 1, child)
     return root
 
-def depth_first_search():
+def depth_first_search(find_node):
     root = create_balanced_graph()
     import ipdb; ipdb.set_trace()
 
-def breadth_first_search():
+def breadth_first_search(find_node):
     root = create_balanced_graph()
     import ipdb; ipdb.set_trace()
+
+# TODO: pygraphviz
