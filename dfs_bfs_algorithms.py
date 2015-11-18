@@ -1,8 +1,14 @@
 class Node(object):
-    def __init__(self, id):
-        self.id = id
+    count = 1
+
+    def __init__(self):
+        self.id = Node.count
         self.parent = None
         self.children = set()
+        Node.count += 1
+
+    def __repr__(self):
+        return "Node {0}".format(self.id)
 
     def add_children(self, children):
         for child in children:
@@ -12,12 +18,21 @@ class Node(object):
         child.parent = self
         self.children.add(child)
 
-def create_graph():
-    graph = set()
-    return graph
+def create_balanced_graph(levels=4, node=None):
+    root = None
+    if not node:
+        node = Node()
+        root = node
+    if levels > 0:
+        node.add_children(set([Node(), Node()]))
+        for child in node.children:
+            create_balanced_graph(levels - 1, child)
+    return root
 
 def depth_first_search():
-    graph = create_graph()
+    root = create_balanced_graph()
+    import ipdb; ipdb.set_trace()
 
 def breadth_first_search():
-    graph = create_graph()
+    root = create_balanced_graph()
+    import ipdb; ipdb.set_trace()
