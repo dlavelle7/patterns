@@ -1,4 +1,5 @@
 from collections import deque
+from graphviz import Digraph
 
 class Node(object):
     count = 1
@@ -19,16 +20,6 @@ class Node(object):
     def add_child(self, child):
         child.parent = self
         self.children.add(child)
-
-def create_balanced_tree(levels=3, node=None):
-    if not node:
-        Node.count = 1
-        node = Node()
-    if levels > 0:
-        node.add_children(set([Node(), Node()]))
-        for child in node.children:
-            create_balanced_tree(levels - 1, child)
-    return node
 
 def depth_first_search(find_node):
     root = create_balanced_tree()
@@ -55,6 +46,30 @@ def breadth_first_search(find_node):
         for child in node.children:
             queue.append(child)
 
+def create_balanced_tree(levels=3, node=None):
+    if not node:
+        Node.count = 1
+        node = Node()
+    if levels > 0:
+        node.add_children(set([Node(), Node()]))
+        for child in node.children:
+            create_balanced_tree(levels - 1, child)
+    return node
+
+def render_graph():
+    root = create_balanced_tree()
+    dot = Digraph('Node_tree')
+
+    def recursive_render(node):
+        dot.node(str(node.id))
+        for child in node.children:
+            dot.node(str(child.id))
+            dot.edge(str(node.id), str(child.id))
+            recursive_render(child)
+
+    recursive_render(root)
+    dot.render()
+
 # TODO: Select tree levels from dfs/bfs functions
-# TODO: pygraphviz
+# TODO: pygraphviz - string representation of id
 # TODO: timing (timeit) comparison
