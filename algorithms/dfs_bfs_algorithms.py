@@ -24,8 +24,7 @@ class Node(object):
         self.children.add(child)
 
 
-def depth_first_search(find_node):
-    root = create_balanced_tree()
+def depth_first_search(root, find_node):
 
     def recursive_search(node):
         if node.id == find_node:
@@ -37,8 +36,7 @@ def depth_first_search(find_node):
 
     return recursive_search(root)
 
-def breadth_first_search(find_node):
-    root = create_balanced_tree()
+def breadth_first_search(root, find_node):
     queue = deque()
     queue.append(root)
 
