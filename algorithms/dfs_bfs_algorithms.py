@@ -21,16 +21,14 @@ class Node(object):
         self.children.add(child)
 
 def create_balanced_tree(levels=3, node=None):
-    root = None
     if not node:
         Node.count = 1
         node = Node()
-        root = node
     if levels > 0:
         node.add_children(set([Node(), Node()]))
         for child in node.children:
             create_balanced_tree(levels - 1, child)
-    return root
+    return node
 
 def depth_first_search(find_node):
     root = create_balanced_tree()
@@ -57,5 +55,6 @@ def breadth_first_search(find_node):
         for child in node.children:
             queue.append(child)
 
+# TODO: Select tree levels from dfs/bfs functions
 # TODO: pygraphviz
 # TODO: timing (timeit) comparison
