@@ -23,6 +23,7 @@ class Node(object):
 def create_balanced_tree(levels=3, node=None):
     root = None
     if not node:
+        Node.count = 1
         node = Node()
         root = node
     if levels > 0:
