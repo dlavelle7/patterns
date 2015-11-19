@@ -1,6 +1,7 @@
 from collections import deque
 from graphviz import Digraph
 
+
 class Node(object):
     count = 1
 
@@ -10,8 +11,9 @@ class Node(object):
         self.children = set()
         Node.count += 1
 
-    def __repr__(self):
-        return "Node: {0}".format(self.id)
+    @property
+    def name(self):
+        return 'node {0}'.format(self.id)
 
     def add_children(self, children):
         for child in children:
@@ -20,6 +22,7 @@ class Node(object):
     def add_child(self, child):
         child.parent = self
         self.children.add(child)
+
 
 def depth_first_search(find_node):
     root = create_balanced_tree()
@@ -60,16 +63,15 @@ def render_graph():
     root = create_balanced_tree()
     dot = Digraph('Node_tree')
 
-    def recursive_render(node):
-        dot.node(str(node.id))
+    def construct_graph(node):
+        dot.node(node.name)
         for child in node.children:
-            dot.node(str(child.id))
-            dot.edge(str(node.id), str(child.id))
-            recursive_render(child)
+            dot.node(child.name)
+            dot.edge(node.name, child.name)
+            construct_graph(child)
 
-    recursive_render(root)
+    construct_graph(root)
     dot.render()
 
 # TODO: Select tree levels from dfs/bfs functions
-# TODO: pygraphviz - string representation of id
 # TODO: timing (timeit) comparison
