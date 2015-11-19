@@ -70,6 +70,3 @@ def render_graph():
 
     construct_graph(root)
     dot.render()
-
-# TODO: Select tree levels from dfs/bfs functions
-# TODO: timing (timeit) comparison

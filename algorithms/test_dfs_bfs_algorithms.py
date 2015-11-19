@@ -42,5 +42,3 @@ class TestDfsBfsAlgorithms(unittest.TestCase):
             self.assertTrue(root.id < child.id)
         root = create_balanced_tree()
         self.assertEqual(root.id, 1)
-
-    # TODO: test larger trees
