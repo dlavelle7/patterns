@@ -1,3 +1,5 @@
+from collections import deque
+
 class Node(object):
     count = 1
 
@@ -44,7 +46,15 @@ def depth_first_search(find_node):
 
 def breadth_first_search(find_node):
     root = create_balanced_tree()
+    queue = deque()
+    queue.append(root)
+
+    while queue:
+        node = queue.popleft()
+        if node.id == find_node:
+            return node
+        for child in node.children:
+            queue.append(child)
 
 # TODO: pygraphviz
 # TODO: timing (timeit) comparison
-# TODO: memory usage comparison?

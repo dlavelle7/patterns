@@ -25,7 +25,24 @@ class TestDfsBfsAlgorithms(unittest.TestCase):
         self.assertEqual(result, None)
 
     def test_breadth_first_search(self):
-        pass
+        Node.count = 1
+        result = breadth_first_search(1)
+        self.assertTrue(type(result) is Node)
+        Node.count = 1
+        result = breadth_first_search(7)
+        self.assertTrue(type(result) is Node)
+        Node.count = 1
+        result = breadth_first_search(12)
+        self.assertTrue(type(result) is Node)
+        Node.count = 1
+        result = breadth_first_search(15)
+        self.assertTrue(type(result) is Node)
+        Node.count = 1
+        result = breadth_first_search(0)
+        self.assertEqual(result, None)
+        Node.count = 1
+        result = breadth_first_search(16)
+        self.assertEqual(result, None)
 
     def test_create_balanced_tree(self):
         root = create_balanced_tree()
