@@ -1,4 +1,3 @@
-from collections import deque
 from graphviz import Digraph
 
 
@@ -10,13 +9,33 @@ class Node(object):
         Node.count += 1
         self.requires = set()
 
+    def __repr__(self):
+        return self.name
+
     @property
     def name(self):
         return 'node {0}'.format(self.id)
 
 
 def topological_sort():
-    pass
+    graph = create_directed_graph()
+    start_nodes = set() # no incoming edges
+    counter = set()
+    for node in graph:
+        for dependency in node.requires:
+            counter.add(dependency)
+    start_nodes = graph - counter
+
+    topsorted = list()
+    while start_nodes:
+        node = start_nodes.pop()
+        topsorted.append(node)
+
+        for dependency in node.requires:
+            #node.requires.remove(dependency) ???
+            #TODO: If no other incoming edges in depency
+
+    return topsorted
 
 def create_directed_graph():
     node1 = Node()
