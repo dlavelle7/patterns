@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-import sys
 
 def main():
     sorted_list = range(10)
