@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 from abc import ABCMeta, abstractmethod
 
 class Base(object):
