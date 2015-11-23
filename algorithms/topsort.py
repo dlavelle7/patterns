@@ -22,11 +22,10 @@ def topological_sort():
     graph = create_directed_graph()
     incoming = defaultdict(int)
     for node in graph:
-        incoming[node]
         for dependency in node.requires:
             incoming[dependency] += 1
 
-    start_nodes = [node for node in incoming if not incoming[node]]
+    start_nodes = [node for node in graph if incoming[node] == 0]
 
     topsorted = list()
     while start_nodes:
@@ -35,7 +34,7 @@ def topological_sort():
 
         for dependency in node.requires:
             incoming[dependency] -= 1
-            if not incoming[dependency]:
+            if incoming[dependency] == 0:
                 start_nodes.append(dependency)
 
     return topsorted
