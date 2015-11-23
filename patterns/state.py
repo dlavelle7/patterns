@@ -4,8 +4,8 @@ from abc import ABCMeta, abstractmethod
 
 class MP3PlayerContext(object):
 
-    def __init__(self,state):
-        self.state = state
+    def __init__(self):
+        self.state = StandbyState()
 
     def play(self):
         self.state.press_play(self)
