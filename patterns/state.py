@@ -29,8 +29,10 @@ class State(object):
 class StandbyState(State):
     def press_play(self, context):
         context.set_state(PlayingState())
+        print 'Entering standby mode . . .'
 
 
 class PlayingState(State):
     def press_play(self, context):
         context.set_state(StandbyState())
+        print 'Now playing . . .'
