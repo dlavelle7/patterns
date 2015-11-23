@@ -1,4 +1,5 @@
 from graphviz import Digraph
+from collections import defaultdict
 
 
 class Node(object):
@@ -19,12 +20,13 @@ class Node(object):
 
 def topological_sort():
     graph = create_directed_graph()
-    start_nodes = set() # no incoming edges
-    counter = set()
+    incoming = defaultdict(int)
     for node in graph:
+        incoming[node]
         for dependency in node.requires:
-            counter.add(dependency)
-    start_nodes = graph - counter
+            incoming[dependency] += 1
+
+    start_nodes = [node for node in incoming if not incoming[node]]
 
     topsorted = list()
     while start_nodes:
@@ -32,8 +34,9 @@ def topological_sort():
         topsorted.append(node)
 
         for dependency in node.requires:
-            #node.requires.remove(dependency) ???
-            #TODO: If no other incoming edges in depency
+            incoming[dependency] -= 1
+            if not incoming[dependency]:
+                start_nodes.append(dependency)
 
     return topsorted
 
