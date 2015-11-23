@@ -1,4 +1,4 @@
-# State Design Pattern
+"""State Design Pattern"""
 from abc import ABCMeta, abstractmethod
 
 
