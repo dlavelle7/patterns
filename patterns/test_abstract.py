@@ -1,8 +1,8 @@
 import unittest
-from state import Base, Concrete, BadConcrete
+from abstract import Base, Concrete, BadConcrete
 
 
-class StateDesignPatternTest(unittest.TestCase):
+class AbstractTest(unittest.TestCase):
 
     def _assertRaisesCustom(self, exception, message, callable, *args, **kwargs):
         try:
