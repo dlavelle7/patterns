@@ -1,4 +1,3 @@
-package hello_world;
 
 public interface TaxStrategy {
 	

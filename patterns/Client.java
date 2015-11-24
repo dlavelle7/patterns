@@ -1,5 +1,4 @@
 // Strategy Design Pattern
-package hello_world;
 
 public class Client {
 	
