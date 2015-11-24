@@ -3,9 +3,6 @@ package hello_world;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-import org.junit.Test;
-import static org.junit.Assert.*;
-
 public class TaxStrategyTest {
 
 	@Test
