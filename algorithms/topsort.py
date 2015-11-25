@@ -20,11 +20,14 @@ class Node(object):
 
 def topological_sort():
     graph = create_directed_graph()
+
+    # Count incoming edges of each node
     incoming = defaultdict(int)
     for node in graph:
         for dependency in node.requires:
             incoming[dependency] += 1
 
+    # Start with the node(s) that have no incoming edges
     start_nodes = [node for node in graph if incoming[node] == 0]
 
     topsorted = list()
@@ -33,8 +36,8 @@ def topological_sort():
         topsorted.append(node)
 
         for dependency in node.requires:
-            incoming[dependency] -= 1
-            if incoming[dependency] == 0:
+            incoming[dependency] -= 1 # Decrement no of incoming edges
+            if incoming[dependency] == 0: # If that was the last one, its next
                 start_nodes.append(dependency)
 
     return topsorted

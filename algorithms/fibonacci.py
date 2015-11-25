@@ -9,6 +9,7 @@ def main():
     assert fibonacci(1) == true_fib
 
 def fibonacci(n):
+    """Returns a list of fibonacci numbers of length n"""
     sequence = [0, 1]
     if n < len(sequence):
         return sequence[:n]

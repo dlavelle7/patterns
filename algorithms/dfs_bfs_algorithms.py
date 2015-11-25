@@ -7,7 +7,6 @@ class Node(object):
 
     def __init__(self):
         self.id = Node.count
-        self.parent = None
         self.children = set()
         Node.count += 1
 
@@ -20,7 +19,6 @@ class Node(object):
             self.add_child(child)
 
     def add_child(self, child):
-        child.parent = self
         self.children.add(child)
 
 

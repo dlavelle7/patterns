@@ -14,12 +14,13 @@ def main():
 
 def bubble_sort(sequence):
     unsorted = True
-    while unsorted:
+    while unsorted: # loop until we make one pass with no swaps
         unsorted = False
         for i in range(len(sequence) -1):
             if sequence[i] > sequence[i + 1]:
-                unsorted = True
-                sequence[i +1], sequence[i] = sequence[i], sequence[i + 1]
+                unsorted = True # swap took place, need to iterate again
+                # Swap in one line, no need for temp variable
+                sequence[i + 1], sequence[i] = sequence[i], sequence[i + 1]
     return sequence
 
 if __name__ == "__main__":
