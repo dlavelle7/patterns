@@ -3,6 +3,8 @@
 def main():
     test_list = [5, 3, 6]
     assert merge_sort(test_list) == sorted(test_list)
+    test_list = [2, 4, 5, 3]
+    assert merge_sort(test_list) == sorted(test_list)
     test_list = [2, 4, 5, 3, 6, 1]
     assert merge_sort(test_list) == sorted(test_list)
     test_list = [2]
