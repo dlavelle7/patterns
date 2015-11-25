@@ -18,9 +18,7 @@ class Node(object):
         return 'node {0}'.format(self.id)
 
 
-def topological_sort():
-    graph = create_directed_graph()
-
+def topological_sort(graph):
     # Count incoming edges of each node
     incoming = defaultdict(int)
     for node in graph:
@@ -28,17 +26,17 @@ def topological_sort():
             incoming[dependency] += 1
 
     # Start with the node(s) that have no incoming edges
-    start_nodes = [node for node in graph if incoming[node] == 0]
+    edgeless_nodes = [node for node in graph if incoming[node] == 0]
 
     topsorted = list()
-    while start_nodes:
-        node = start_nodes.pop()
+    while edgeless_nodes:
+        node = edgeless_nodes.pop()
         topsorted.append(node)
 
         for dependency in node.requires:
             incoming[dependency] -= 1 # Decrement no of incoming edges
             if incoming[dependency] == 0: # If that was the last one, its next
-                start_nodes.append(dependency)
+                edgeless_nodes.append(dependency)
 
     return topsorted
 
@@ -46,10 +44,15 @@ def create_directed_graph():
     node1 = Node()
     node2 = Node()
     node3 = Node()
+    node4 = Node()
+    node5 = Node()
 
-    node1.requires.add(node2)
+    node2.requires.add(node1)
     node3.requires.add(node2)
-    return set([node1, node2, node3])
+    node4.requires.add(node2)
+    node5.requires.add(node4)
+
+    return set([node1, node2, node3, node4, node5])
 
 def render_graph(graph):
     dot = Digraph('directed_graph')
