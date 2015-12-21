@@ -25,7 +25,7 @@ def decorator_with_args(*dec_args, **dec_kwargs):
 def decorated_function_with_args(original_func):
     def new_func(*args, **kwargs):
         print "decorated function args", args, kwargs
-        result = original_func()
+        result = original_func(*args, **kwargs)
         return result
     return new_func
 
@@ -40,7 +40,7 @@ def bar():
 
 @decorated_function_with_args
 def baz(*args, **kwargs):
-    print 'baz'
+    print 'function args', args, kwargs
 
 
 foo()
