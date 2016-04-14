@@ -1,20 +1,18 @@
 class Singleton(object):
+    """Singleton design pattern."""
 
     instance = None
 
-    class __Singleton(object):
-        def __init__(self, value):
-            self.value = value
-
-        def __str__(self):
-            return "{0} with value {1}".format(repr(self), self.value)
-
     def __new__(cls, value):
         if not Singleton.instance:
-            Singleton.instance = Singleton.__Singleton(value)
-        else:
-            Singleton.instance.value = value
+            Singleton.instance = super(Singleton, cls).__new__(cls, value)
         return Singleton.instance  # return instance of 'cls' to __init__
+
+    def __init__(self, value):
+        self.value = value
+
+    def __str__(self):
+        return "{0} with value {1}".format(repr(self), self.value)
 
 
 foo = Singleton('foo')
