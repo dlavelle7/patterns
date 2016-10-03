@@ -1,5 +1,5 @@
 import unittest
-from abstract import Base, Concrete, BadConcrete
+from python.abstract import Base, Concrete, BadConcrete
 
 
 class AbstractTest(unittest.TestCase):
