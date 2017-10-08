@@ -60,4 +60,3 @@ for c in xrange(10):
 
 queue.join()  # Main thread waits until all tasks in queue are processed
 log.info("Main thread finished, no further consuming")
-assert queue.qsize() == 0
