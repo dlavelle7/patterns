@@ -1,5 +1,5 @@
 import unittest
-from python.state import MP3PlayerContext, State, StandbyState, PlayingState
+from python.state import MP3PlayerContext, StandbyState, PlayingState
 
 
 class StateTest(unittest.TestCase):

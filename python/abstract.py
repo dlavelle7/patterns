@@ -1,5 +1,6 @@
 from abc import ABCMeta, abstractmethod
 
+
 class Base(object):
 
     __metaclass__ = ABCMeta
@@ -12,13 +13,10 @@ class Base(object):
     def bar(self):
         pass
 
-class BadConcrete(Base):
-    # abstract method bar() not implemented:
-    # Class created but error when instantiating
-    def foo(self):
-        return 'bad foo'
 
 class Concrete(Base):
+    """All abstract methods from the super class must be implemented."""
+
     def foo(self):
         return 'foo'
 

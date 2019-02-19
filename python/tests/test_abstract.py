@@ -1,23 +1,24 @@
 import unittest
-from python.abstract import Base, Concrete, BadConcrete
+from python.abstract import Base, Concrete
+
+
+class BadConcrete(Base):
+    # abstract method bar() not implemented:
+    # Class created but error when instantiating
+    def foo(self):
+        return 'bad foo'
 
 
 class AbstractTest(unittest.TestCase):
 
-    def _assertRaisesCustom(self, exception, message, callable, *args, **kwargs):
-        try:
-            callable(*args, **kwargs)
-        except exception as e:
-            if (str(e) != message):
-                raise AssertionError("{0} != {1}".format(message, str(e)))
-        else:
-            raise AssertionError('No exception was raised')
-
     def test_abstract_methods(self):
         # non implemented abstract method
         self.assertTrue(issubclass(BadConcrete, Base))
-        message = "Can't instantiate abstract class BadConcrete with abstract methods bar"
-        self._assertRaisesCustom(TypeError, message, BadConcrete)
+        with self.assertRaises(TypeError) as exc_context:
+            BadConcrete()
+        expected = ("Can't instantiate abstract class BadConcrete with "
+                    "abstract methods bar")
+        self.assertEqual(str(exc_context.exception), expected)
 
         # all abstract classes implemented
         concrete = Concrete()
