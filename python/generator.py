@@ -2,7 +2,7 @@
 
 
 class FirstN(object):
-    """Generator pattern. This example is both an iterable and an iterator."""
+    """Iterator class."""
 
     def __init__(self, n):
         self.n = n
